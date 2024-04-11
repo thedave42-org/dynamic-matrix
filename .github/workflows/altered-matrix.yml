@@ -27,14 +27,16 @@ jobs:
     steps:
       - name: View the whole matrix as a json string
         run: |
-          echo '${{ toJson(matrix) }}' | tr -d '\n' | jq '. + {"tag": "1.4892"}'
+          MATRIX=$(echo '${{ toJson(matrix) }}' | tr -d '\n' | jq '. + {"tag": "1.4892"}')
+          echo "The matrix is $MATRIX"
+          echo "the-matrix=$MATRIX" >> $GITHUB_OUTPUT
         id: test
 
-  # check-matrix:
-  #   needs: do-build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check the matrix
-  #       run: |
-  #         echo "The matrix is ${{ needs.do-build.outputs.the-matrix }}"
+  check-matrix:
+    needs: do-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the matrix
+        run: |
+          echo "The matrix is ${{ needs.do-build.outputs.the-matrix }}"
       
