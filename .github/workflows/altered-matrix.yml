@@ -22,7 +22,7 @@ jobs:
           - docker10
 
     outputs:
-      the-matrix: ${{ fromJson(steps.test.outputs.the-matrix) }}
+      the-matrix: ${{ steps.test.outputs.the-matrix }}
 
     steps:
       - name: View the whole matrix as a json string
