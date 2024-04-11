@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: View the whole matrix as a json string
         run: |
-          MATRIX=$(echo '${{ toJson(matrix) }}' | jq '. + {"tag": "1.4892"} | tr -d '\n' ')
+          MATRIX=$(echo '${{ toJson(matrix) }}' | jq '. + {"tag": "1.4892"}' | tr -d '\n')
           MATRIX=$(echo "$MATRIX" | sed "s/\"/'/g")
           echo "$MATRIX"
           echo "the-matrix=$MATRIX" >> $GITHUB_OUTPUT
