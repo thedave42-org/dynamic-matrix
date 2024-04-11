@@ -27,7 +27,8 @@ jobs:
     steps:
       - name: View the whole matrix as a json string
         run: |
-          echo 'the-matrix=${{ toJson(matrix) }}' | jq '. + {"tag": "1.4892"}' >> $GITHUB_OUTPUT
+          the-matrix=$(echo '${{ toJson(matrix) }}' | jq '. + {"tag": "1.4892"}')
+          echo "the-matrix=$the-matrix" >> $GITHUB_OUTPUT
         id: test
 
   check-matrix:
