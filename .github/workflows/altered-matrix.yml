@@ -22,11 +22,12 @@ jobs:
           - docker10
 
     outputs:
-      the-matrix: ${{ matrix.images }}
+      the-matrix: ${{ steps.test.outputs.the-matrix }}
 
     steps:
       - name: View the whole matrix as a json string
-        run: echo "${{ toJson(matrix) }}"
-        id: matrix
+        run: |
+          echo '${{ toJson(matrix) }}' | jq '. + {"tag": "1.4892"}'
+        id: test
 
       
