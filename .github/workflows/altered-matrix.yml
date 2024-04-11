@@ -1,1 +1,33 @@
+name: Dynamic Matrix
 
+on:
+  workflow_dispatch:
+
+
+jobs:
+  do-build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        images:
+          - docker1
+          - docker2
+          - docker3
+          - docker4
+          - docker5
+          - docker6
+          - docker7
+          - docker8
+          - docker9
+          - docker10
+
+    outputs:
+      the-matrix: ${{ matrix.images }}
+
+    steps:
+      - name: View the whole matrix as a json string
+        run: echo "${{ toJson(matrix) }}"
+        id: matrix
+
+      
