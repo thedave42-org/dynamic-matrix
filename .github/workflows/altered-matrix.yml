@@ -3,7 +3,6 @@ name: Dynamic Matrix
 on:
   workflow_dispatch:
 
-
 jobs:
   do-build:
 
