@@ -30,7 +30,7 @@ jobs:
           MATRIX=$(echo '${{ toJson(matrix) }}' | tr -d '\n' | jq '. + {"tag": "1.4892"}')
           MATRIX=$(echo "$MATRIX" | sed 's/"/\\"/g')
           echo "The matrix is $MATRIX"
-          echo 'the-matrix=$MATRIX' >> $GITHUB_OUTPUT
+          echo "the-matrix=$MATRIX" >> $GITHUB_OUTPUT
         id: test
 
   check-matrix:
