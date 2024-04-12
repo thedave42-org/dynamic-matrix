@@ -36,7 +36,21 @@ jobs:
   check-matrix:
     needs: do-build
     runs-on: ubuntu-latest
-    steps:
+    strategy:
+      matrix:
+        images:
+          - docker1
+          - docker2
+          - docker3
+          - docker4
+          - docker5
+          - docker6
+          - docker7
+          - docker8
+          - docker9
+          - docker10
+
+      steps:
       - name: Check the matrix
         run: |
           echo "The matrix is ${{ needs.do-build.outputs.the-matrix }}"
