@@ -1,0 +1,30 @@
+name: Call reuable workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    runs-on:
+      ubuntu-latest
+
+    strategy:
+      matrix:
+        images:
+          - docker1
+          - docker2
+          - docker3
+          - docker4
+          - docker5
+          - docker6
+          - docker7
+          - docker8
+          - docker9
+          - docker10
+
+    steps:
+      - name: Call the reusable workflow
+        uses: ./.github/workflows/build-deploy.yml
+        with:
+          image_name: ${{ matrix.images }}
+

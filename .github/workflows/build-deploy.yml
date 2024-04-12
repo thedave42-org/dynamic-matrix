@@ -1,0 +1,32 @@
+# It is no longer correct to use ::set-output name= to set the output variable
+# the new syntax is echo "the-matrix=$MATRIX" >> $GITHUB_OUTPUT
+# do not use ::set-output anymore
+
+name: Build Docker image and deploy to cluster
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+    outputs:
+      image_tag: ${{ github.event.inputs.image_name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a tag from the image name and a version number
+        run: |
+          echo "image_tag=${{ github.event.inputs.image_name }}-1.0" >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Kubernetes
+        run: |
+          echo "Deploying ${{ needs.build.outputs.image_tag }} to Kubernetes"
