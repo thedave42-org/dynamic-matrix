@@ -50,7 +50,7 @@ jobs:
           - docker9
           - docker10
 
-      steps:
+    steps:
       - name: Check the matrix
         run: |
           echo "The matrix is ${{ needs.do-build.outputs.the-matrix }}"
