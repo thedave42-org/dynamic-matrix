@@ -19,9 +19,9 @@ jobs:
       imageTag: ${{ steps.createTag.outputs.imageTag }}
 
     steps:
-      - name: Create a tag from ${{ github.event.inputs.imageName }} and a version number
+      - name: Create a tag from ${{ inputs.imageName }} and a version number
         run: |
-          echo "imageTag=${{ github.event.inputs.imageName }}-1.0" >> $GITHUB_OUTPUT
+          echo "imageTag=${{ inputs.imageName }}-1.0" >> $GITHUB_OUTPUT
 
   deploy:
     needs: build
