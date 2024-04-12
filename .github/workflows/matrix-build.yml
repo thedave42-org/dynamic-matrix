@@ -5,9 +5,6 @@ on:
 
 jobs:
   call-workflow:
-    runs-on:
-      ubuntu-latest
-
     strategy:
       matrix:
         images:
@@ -22,9 +19,8 @@ jobs:
           - docker9
           - docker10
 
-    steps:
-      - name: Call the reusable workflow
-        uses: ./.github/workflows/build-deploy.yml
-        with:
-          image_name: ${{ matrix.images }}
+    uses: ./.github/workflows/build-deploy.yml
+    with:
+      image_name: ${{ matrix.images }}
+
 
