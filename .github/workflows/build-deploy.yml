@@ -20,6 +20,7 @@ jobs:
 
     steps:
       - name: Create a tag from ${{ inputs.imageName }} and a version number
+        id: createTag
         run: |
           echo "imageTag=${{ inputs.imageName }}-1.0" >> $GITHUB_OUTPUT
 
